@@ -1,46 +1,48 @@
 ﻿#include <stdio.h>
 #include <string.h>
-int main() {
-	char a[100] = { 0 };
-	int i, num = 0, k = 0;
-	fgets(a, 100, stdin);
-	for (i = 0; i < 100; i++) {
-		if (a[i] == ' ') {
-			if (num < k) {
-				num = k;
-			}
-			k = -1;
-		}
-		else if (a[i] == '.' || a[i] == '!' || a[i] == '?') {
-			if (num < k) {
-				num = k;
-			}
-			k = 0;
-			break;
-		}
-		k++;
+
+void ReverseString(char* left, char* right)//反转字符串
+{
+	while (left <= right)
+	{
+		char tmp = *left;
+		*left = *right;
+		*right = tmp;
+		left++;
+		right--;
 	}
-	for (i = 0; i < 100; i++) {
-		if (a[i] == ' ') {
-			if (k == num) {
-				for (i = i - k; i <= k; i++)
-					printf("%c", a[i]);
-			}
-			k = -1;
+}
+
+int main()
+{
+	int i;
+	char str[100] = "0";
+	fgets(str, 100, stdin);
+
+	int length = strlen(str);
+	for (i = 0; i <= length; i++)
+		if (str[i] == '.' || str[i] == '!' || str[i] == '?')
+			str[i] = '\0';
+	ReverseString(str, str + length - 1);
+	char* start = str;
+	while (*start)
+	{
+		char* end = start;
+		while (*end != ' ' && *end)
+		{
+			end++;
 		}
-		if (a[i] == '.' || a[i] == '!' || a[i] == '?') {
-			if (k == num) {
-				i = i - k;
-				while (1) {
-					if (a[i] == '.' || a[i] == '!' || a[i] == '?' || a[i] == ' ')
-						break;
-					printf("%c", a[i]);
-					i++;
-				}
-			}
-			break;
+		ReverseString(start, end - 1);
+		if (*end == ' ')
+		{
+			start = end + 1;
 		}
-		k++;
+		else
+		{
+			start = end;
+		}
 	}
+
+	printf("%s", str);
 	return 0;
 }
