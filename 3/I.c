@@ -1,36 +1,26 @@
 ﻿#include <stdio.h>
-#include<stdlib.h>
-int main() {
-	char ch1[100];
-	char ch2[100];
-	int i;
+#include<string.h>
+#include<assert.h>
 
-	fgets(ch1, 100, stdin);
-	fgets(ch2, 100, stdin);
-
-	int temp = 0;
-
-	for (i = 0; i <= 100; i++) {
-
-		if (ch1[i] > ch2[i]) {
-			temp = temp + 1;
+int str(char* p1, char* p2)
+{
+	while (*p1 == *p2)
+	{
+		if (*p1 == '\0')
+		{
+			return 0;
 		}
-
-		else if (ch1[i] < ch2[i]) {
-			temp = temp - 1;
-		}
-		if ((temp == 1) || (temp == -1) || (ch1[i] == '\0') || (ch2[i] == '\0')) {
-			break;
-		}
+		p1++;
+		p2++;
 	}
-	if (temp != 0) {
-		for (i = 0; i < 100; i++) {
-			if (ch1[i] != ch2[i]) {
-				temp = ch1[i] - ch2[i];
-				break;
-			}
-		}
-	}
-	printf("%d", temp);
+	return *p1 - *p2;
+}
+int main()
+{
+	char arr1[100] = { 0 };
+	char arr2[100] = { 0 };
+	fgets(arr1, 100, stdin);
+	fgets(arr2, 100, stdin);
+	printf("%d\n", str(arr1, arr2));
 	return 0;
 }
