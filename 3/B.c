@@ -1,31 +1,38 @@
-﻿#include<stdio.h>
-int a[50] = { 0 };
+﻿
+#include <stdio.h>
+#include <stdlib.h>
 
-void doubleCheck(int a, int b, int c) {//a为数组的下界，b为数组的上界，c为匹配目标,d为查找的范围数组。
+void main() {
+	void doubleCheck(int a, int b, int c, int d[]);
+	int d[50] = { 0 }, i, n, key;
+	scanf("%d", &n);
+	for (i = 0; i < n; i++) {
+		scanf("%d", &d[i]);
+	}
+	scanf("%d", &key);
+	doubleCheck(0, n - 1, key, d);
+
+}
+
+void doubleCheck(int a, int b, int c, int d[]) {//a为数组的下界，b为数组的上界，c为匹配目标,d为查找的范围数组。
 	int x = (a + b) / 2;
-	//递归的结束条件一定要写在判断条件之前。
-	if (a[x] == c)
+
+	if (d[x] == c)
 	{
 		printf("%d", x);
 	}
-	if (a[x] > c)//说明在d[a]-d[x]范围之中
+	if (d[x] > c)//说明在d[a]-d[x]范围之中
 	{
-		doubleCheck(a, x - 1, c);
+		printf("%d ", d[x]);
+		doubleCheck(a, x - 1, c, d);
 	}
-	if (a[x] < c)
+	if (d[x] < c)
 	{
-		doubleCheck(x + 1, b, c);
+		printf("%d ", d[x]);
+		doubleCheck(x + 1, b, c, d);
 	}
+	if (a > b)
+		printf("-1");
 
 
-
-}
-void main() {
-	int n, i, aim;
-	scanf("%d", &n);
-	for (i = 0; i < n; i++) {
-		scanf("%d", &a[i]);
-	}
-	scanf("%d", &aim);
-	doubleCheck(0, n - 1, aim);
 }
