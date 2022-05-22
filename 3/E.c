@@ -3,6 +3,7 @@
 #include<stdlib.h>
 #include<math.h>
 char result_1[100] = { 0 };
+char rev[100] = { 0 };
 char result_2[100] = { 0 };
 int i = 0;
 void fun() {
@@ -63,14 +64,25 @@ void fun() {
 }
 
 int main() {
-	int k = 0;
-	char n;
-	fun();
 
+	fun();
+	int l;
 	getchar();
 	fgets(result_2, 100, stdin);
-	int aws = strcmp(result_1, result_2);
-	fputs(result_1, stdout);
+	int len = strlen(result_1) - 1;
+	if (result_1[0] == '-') {
+		rev[0] = '-';
+		for (l = 1; l <= len; l++) {
+			rev[l] = result_1[len - l + 1];
+		}
+	}
+	else {
+		for (l = 0; l <= len; l++) {
+			rev[l] = result_1[len - l];
+		}
+	}
+	int aws = strcmp(rev, result_2);
+	fputs(rev, stdout);
 	if (aws < 0) {
 		printf("<");
 	}
@@ -82,4 +94,3 @@ int main() {
 	fputs(result_2, stdout);
 	return 0;
 }
-

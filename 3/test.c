@@ -1,7 +1,6 @@
 ﻿#include<stdio.h>
 #include<string.h>
-main()
-{
+main() {
 	char str1[100], str2[100];
 	int i = 0, flag = 0, aws;
 	gets(str1);
