@@ -1,5 +1,4 @@
-﻿
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 int result[50] = { 0 }, aws, count = 0;
 void main() {
@@ -26,7 +25,7 @@ void main() {
 	printf("%d", aws);
 }
 
-void doubleCheck(int a, int b, int c, int d[]) {//a为数组的下界，b为数组的上界，c为匹配目标,d为查找的范围数组。
+void doubleCheck(int a, int b, int c, int d[]) {
 	if (a <= b) {
 		int x = (a + b) / 2;
 		result[count] = d[x];
@@ -36,7 +35,7 @@ void doubleCheck(int a, int b, int c, int d[]) {//a为数组的下界，b为数�
 		{
 			aws = x;
 		}
-		if (d[x] > c)//说明在d[a]-d[x]范围之中
+		if (d[x] > c)
 		{
 			doubleCheck(a, x - 1, c, d);
 		}

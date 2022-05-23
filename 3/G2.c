@@ -30,13 +30,13 @@ int main()
 	while (*start)
 	{
 		char* end = start;
-		while (*end != ' ' && *end)
+		while (*end != ' ' && *end != '\0' && *end != ',' && *end != '.' && *end != '?' & *end != '!')
 			end++;
 		Reverse(start, end - 1);
-		if (*end == ' ')
-			start = end + 1;
-		else
+		if (*end == '\0')
 			start = end;
+		else
+			start = end + 1;
 	}
 	for (i = 0; i < len; i++) {
 		if (str[i] == '\n')
