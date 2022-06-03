@@ -62,3 +62,9 @@ dkms.conf
 *.recipe
 *.log
 *.lastbuildstate
+*.vsidx
+*.ipch
+*.vsidx
+*.vsidx
+*.vsidx
+*.enc

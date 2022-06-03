@@ -1,17 +1,13 @@
 ﻿#include<stdio.h>
-#include<string.h>
-main() {
-	char str1[100], str2[100];
-	int i = 0, flag = 0, aws;
-	gets(str1);
-	gets(str2);
-	while ((str1[i] == str2[i]) && (str1[i] != '\0'))
-		i++;
-	if (str1[i] == '\0' && str2[i] == '\0') {
-		aws = 0;
-	}
-	else {
-		aws = str1[i] - str2[i];
-	}
-	printf("%d", aws);
+void fun(int);
+int main() {
+	fun(1);
+	return 0;
+}
+
+void fun(int n) {
+	printf("in num:%d address:%p\n", n, &n);
+	if (n < 4)
+		fun(n + 1);
+	printf("out num:%d address:%p\n", n, &n);
 }
