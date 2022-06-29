@@ -27,6 +27,20 @@ void rank(struct stu* s, int n) {
 			}
 
 }
+void rank_2(struct stu_2* s) {
+	int i, k;
+	struct stu_2 temp;
+
+	for (k = 1; k < 5; k++)
+		for (i = 4; i >= k; i--)
+			if (s[i].max > s[i - 1].max)
+			{
+				temp = s[i];
+				s[i] = s[i - 1];
+				s[i - 1] = temp;
+			}
+
+}
 
 void main() {
 	printf("[eStudent_system4]\n");
@@ -89,7 +103,7 @@ void main() {
 			min_s = s[j].score;
 		}
 	}
-	printf("班级最高分：%.2f %d号\n班级最低分：%.2f %d号", max_s, max_n, min_s, min_n);
+	printf("班级最高分：%.2f %d号\n班级最低分：%.2f %d号\n", max_s, max_n, min_s, min_n);
 
 	rank(s, i);
 	printf("学号  成绩\n");
@@ -101,17 +115,28 @@ void main() {
 		fprintf(fp, "%.3f\n", s[j].score);
 	}
 	fclose(fp);
-	fp = fopen("student.txt", "w+");
+	fp = fopen("student.txt", "r");
 
 	struct stu_2 s1[5];
 	for (j = 0; j < 5; j++) {
 		fscanf(fp, "%d", &s1[j].num);
 		fscanf(fp, "%d", &s1[j].count);
+		while (1) {
+			if (s1[j].count <= 0) {
+				printf("%d班人数异常，请重新输入\n", s1[j].num);
+				scanf("%d", &s1[j].count);
+			}
+			else
+				break;
+		}
 		fscanf(fp, "%f", &s1[j].score);
 		fscanf(fp, "%f", &s1[j].p_60);
 		fscanf(fp, "%f", &s1[j].p_85);
 		fscanf(fp, "%f", &s1[j].max);
 		fscanf(fp, "%f", &s1[j].min);
 	}
-
+	rank_2(s1);
+	printf("班级号 学生数 平均成绩 合格率 优秀率 班级最高分 班级最低分\n");
+	for (j = 0; j < 5; j++)
+		printf("%-4d   %-2d     %-4.2f     %-4.2f   %-4.2f   %-4.2f      %-.2f\n", s1[j].num, s1[j].count, s1[j].score, s1[j].p_60, s1[j].p_85, s1[j].max, s1[j].min);
 }
